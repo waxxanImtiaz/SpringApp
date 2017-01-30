@@ -6,6 +6,7 @@
 package controller;
 
 import beans.Person;
+import java.util.InputMismatchException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,14 +16,22 @@ import org.springframework.web.servlet.mvc.Controller;
  *
  * @author imtiaz-ali
  */
-public class HelloController implements Controller {
-    private Person person;
-    @Override 
+public class FormHandler implements Controller {
+    
+    @Override
     public ModelAndView handleRequest(HttpServletRequest req,HttpServletResponse res){
-        person = new Person();
-        person.setName("Imtiaz Ali");
-        person.setAge(23);
+        String name = req.getParameter("name");
+        String age = req.getParameter("age");
+        
+        Person  person = new Person();
+        try{
+        person.setAge(Integer.parseInt(age));
+        person.setName(name);
+        }catch(InputMismatchException e){
+            e.printStackTrace();
+        }
+        
         return new ModelAndView("hellopage","person",person);
-    }
-  
+    } 
+    
 }

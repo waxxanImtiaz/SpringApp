@@ -20,8 +20,9 @@
         <property name="mappings">
             <props>
                 <!--<prop key="index.htm">indexController</prop>-->
-                <prop key="index.htm">controll</prop>
+<!--                <prop key="index.htm">controll</prop>-->
                 <prop key="hellopage.htm">hello</prop>
+                <prop key="index.htm">input</prop>
             </props>
         </property>
     </bean>
@@ -43,6 +44,9 @@
     />
     <bean name="hello"
     class="controller.HelloController"
+    />
+    <bean name="input"
+    class="controller.FormHandler"
     />
 
 </beans>
